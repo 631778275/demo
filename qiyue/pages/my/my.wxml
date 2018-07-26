@@ -1,0 +1,27 @@
+<view class="container">
+    <image class="bg" src="/images/my/my@bg.png"></image>
+    <img-btn-cmp bind:getuserinfo="onGetUserInfo" class="avatar-position" openType="getUserInfo" wx:if="{{!hasUserInfo}}">
+        <image class="avatar" slot="img" src="/images/my/my.png"></image>
+    </img-btn-cmp>
+    <view class="avatar-container avatar-position">
+        <image class="avatar" src="{{userInfo.avatarUrl}}" wx:if="{{hasUserInfo}}"></image>
+        <open-data type="userNickName" wx:if="{{hasUserInfo}}"></open-data>
+    </view>
+    <view class="about-container">
+        <view bind:tap="onJumpToAbout" class="about-us">
+            <image src="/images/my/about.png"></image>
+            <text class="description">关于我们</text>
+        </view>
+        <view class="about-us">
+            <text class="book-num">{{myBooksCount}}</text>
+            <text class="description">喜欢的书</text>
+        </view>
+    </view>
+    <view class="like-container">
+        <image class=".headline" src="/images/my/like.png"></image>
+        <view class="preview-container">
+            <previe-cmp bind:tap="onPreviewTap" class="preview" classic="{{item}}" wx:for="{{classics}}" wx:key=''></previe-cmp>
+        </view>
+    </view>
+</view>
+<image bind:tap="onStudy" class="study" src="/images/my/study.png"></image>

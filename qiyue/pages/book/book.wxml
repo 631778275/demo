@@ -1,0 +1,17 @@
+<view>
+    <view class="container" wx:if="{{!searchPanel}}">
+        <view class="header">
+            <view bind:tap="onActivateSearch" class="box">
+                <image src="/images/icon/search.png"></image>
+                <text>搜索书籍</text>
+            </view>
+        </view>
+        <view class="sub-container">
+            <image class="head-img" src="/images/book/quality.png"></image>
+            <view class="books-container">
+                <book-cmp book="{{item}}" class="book" wx:for="{{books}}" wx:key=''></book-cmp>
+            </view>
+        </view>
+    </view>
+    <search-cmp bind:cancel="onCancel" more="{{more}}" wx:if="{{searchPanel}}"></search-cmp>
+</view>

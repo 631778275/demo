@@ -1,0 +1,8 @@
+<view catch:tap="onTap" class="container">
+    <view class="head">
+        <tag-cmp tagClass="tag" text="{{typeText}}"></tag-cmp>
+        <like-cmp class="like" count="{{classic.fav_nums}}" like="{{true}}" readOnly="{{true}}"></like-cmp>
+    </view>
+    <image class="{{classic.type==200?'music-img':'other-img'}}" src="{{classic.image}}"></image>
+    <view class="text">{{classic.content}}</view>
+</view>

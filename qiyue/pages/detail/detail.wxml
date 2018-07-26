@@ -1,0 +1,81 @@
+<view class="container">
+    <view class="head">
+        <image src="{{book.image}}"></image>
+        <text class="title">{{book.title}}</text>
+        <text class="author">{{book.author}}</text>
+    </view>
+    <view class="sub-container">
+        <text class="headline">短评</text>
+        <text class="shadow" wx:if="{{noComment}}">还没有短评</text>
+        <view class="comment-container">
+            <tag-cmp class="tag" text="{{item.content}}" wx:for="{{util.limit(comments,15)}}" wx:key=''>
+                <text class="num" slot="after">{{'+'+item.nums}}</text>
+            </tag-cmp>
+        </view>
+    </view>
+    <view class="sub-container">
+        <text class="headline">内容简介</text>
+        <text class="content" decode="{{true}}">{{util.format(book.summary)}}</text>
+    </view>
+    <view class="sub-container">
+        <text class="headline">书本信息</text>
+        <view class="detail-contaner">
+            <view class="vertical">
+                <text class="description">出版社</text>
+                <text class="description">出版年</text>
+                <text class="description">页数</text>
+                <text class="description">定价</text>
+                <text class="description">装帧</text>
+            </view>
+            <view class="vertical">
+                <text class="">{{book.publisher}}</text>
+                <text class="">{{book.pubdate}}</text>
+                <text class="">{{book.pages}}</text>
+                <text class="">{{book.price}}</text>
+                <text class="">{{book.binding}}</text>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="post-container" wx:if="{{!posting}}">
+    <view bind:tap="onFakePost" class="post-fake">
+        <text>短评：仅做演示，不能输入</text>
+    </view>
+    <view class="like-container">
+        <like-cmp bind:like="onLike" class="like" count="{{count}}" like="{{like}}"></like-cmp>
+        <img-btn-cmp class="share-btn" openType="share">
+            <image class="share" slot="img" src="/images/icon/share.png"></image>
+        </img-btn-cmp>
+    </view>
+</view>
+<mask-cmp wx:if="{{posting}}"></mask-cmp>
+<view class="posting-container" wx:if="{{posting}}">
+    <view class="post-header">
+        <text wx:if="{{!(comments==false)}}">仅可点击标签+1</text>
+        <text wx:else>暂无短评</text>
+        <text bind:tap="onCancel" class="cancel">取消</text>
+    </view>
+    <view class="comment-container">
+        <tag-cmp bind:tapping="onPost" tagClass="tag" text="{{item.content}}" wx:for="{{util.limit(comments,3)}}">
+            <text class="num" slot="after">{{'+'+item.nums}}</text>
+        </tag-cmp>
+    </view>
+    <image class="tip" src="/images/book/tip.png"></image>
+</view>
+<wxs module="util">
+var limit = (function(array, length) {
+    return (array.slice(0, length))
+});
+var format = (function(text) {
+    if (!text) {
+        return
+    };
+    var reg = getRegExp('\\\\n', 'g');
+    var text = text.replace(reg, '\n\x26nbsp;\x26nbsp;\x26nbsp;\x26nbsp;\x26nbsp;');
+    return (text)
+});
+module.exports = ({
+    limit: limit,
+    format: format,
+});
+</wxs>

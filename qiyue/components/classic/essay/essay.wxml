@@ -1,0 +1,5 @@
+<view class="classic-container">
+    <image class="classic-img" src="{{img}}"></image>
+    <image class="tag" src="images/essay@tag.png"></image>
+    <text class="content">{{content}}++12111</text>
+</view>

@@ -1,0 +1,50 @@
+.classic-img {
+    width: 422rpx;
+    height: 422rpx;
+    margin-top: 60rpx;
+    border-radius: 70%;
+    overflow: hidden;
+}
+
+@-webkit-keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.tag {
+    width: 44rpx;
+    height: 127rpx;
+    position: relative;
+    bottom: 160rpx;
+    right: 310rpx;
+}
+
+.rotation {
+    -webkit-transform: rotate(360deg);
+    animation: rotation 12s linear infinite;
+}
+
+.player-img {
+    width: 120rpx;
+    height: 120rpx;
+    position: relative;
+    bottom: 271rpx;
+}
+
+.content {
+    display: block;
+    max-width: 550rpx;
+    font-size: 36rpx;
+    margin-top: -90rpx;
+}
+
+.classic-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
